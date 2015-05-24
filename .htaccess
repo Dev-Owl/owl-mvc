@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !\.(?:css|js|jpe?g|gif|png)$ [NC]
+RewriteRule ^([^/]*)/([^/]*)$ /index.php?page=$1&action=$2 [L]
