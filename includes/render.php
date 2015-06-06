@@ -38,6 +38,27 @@ class Renderer
 			throw new Exception('(403) Member only area!');
 		}
 	}
+	
+	public static function ActionLink( $text,$controller ="", $action="", $gets=null, $cssClass=""){
+		global $defaultHomeController,$defaultAction;
+		$template ="<a href='/%controller/%action%get' class='%css'>%text</a>";
+		$get_formated ="";
+		if( is_array($gets))
+		{
+			$get_formated = "?".implode("&",$gets);
+		}
+		else if( !empty($gets) && is_string($gets) )
+		{
+			$get_formated = "?".$gets;
+		}
+		$controller = set_default($controller,$defaultHomeController);
+		$action = set_default($action,$defaultAction);		
+		return sprintf2($template,array('controller' => $controller,
+										'action'     => $action,
+										'get'        => $get_formated,
+										'css'        => $cssClass,
+										'text'       => $text));;
+	}
 }
 
 ?>
