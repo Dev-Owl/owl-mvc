@@ -20,5 +20,8 @@ date_default_timezone_set("UTC");
 
 $debugMode = true;
 
+/*=========== Style and theme setting =======*/
+
+$globalTheme = 'DefaultTemplate';
 
 ?>

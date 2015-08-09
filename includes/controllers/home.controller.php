@@ -4,14 +4,15 @@ class HomeController{
 	
 	public function index()
 	{
-		
-		Renderer::render("home",array('title'=>'Welcome'),"DefaultTemplate");
+		global $globalTheme;
+		Renderer::render("home",array('title'=>'Welcome'),$globalTheme);
 		
 	}
 	
 	public function devowl()
 	{
-		Renderer::render("home",array('title'=>'Owl Time'),"DefaultTemplate");
+		global $globalTheme;
+		Renderer::render("home",array('title'=>'Owl Time'),$globalTheme);
 		
 	}
 	

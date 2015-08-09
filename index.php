@@ -13,12 +13,20 @@ try
 	}
 	if( isset($_GET['page']))
 	{
-		$request = strtolower( clean($_GET['page']));	
-		include("includes/controllers/".$request.".controller.php");
-		$c = createContorller($request);	
-		if( isset($_GET['action']))
+		$request = strtolower( clean($_GET['page']));
+		$controllerPath="includes/controllers/".$request.".controller.php";
+		if(file_exists($controllerPath))
 		{
-			$action = $_GET['action'];
+			include($controllerPath);
+			$c = createContorller($request);	
+			if( isset($_GET['action']))
+			{
+				$action = $_GET['action'];
+			}
+		}
+		else
+		{
+			throw new Exception("Sorry this is not the page you are looking for!");
 		}
 	}
 	else
@@ -34,9 +42,6 @@ try
 }
 catch(Exception $e) {
 	$_POST = array();
-	render('error',array('message'=>$e->getMessage(),'trace'=> $e->getTraceAsString()));
+	Renderer::render('error',array('message'=>$e->getMessage(),'trace'=> $e->getTraceAsString()),$globalTheme);
 }
-
-
-
 ?>
